@@ -1,4 +1,3 @@
-#%RAML 1.0
 /comments:
   get:
     description: Retrieve all comments of user. If userID is adminID retrive all comments from database.

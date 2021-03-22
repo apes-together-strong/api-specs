@@ -1,4 +1,3 @@
-#%RAML 1.0
 /posts:
   get:
     description: Retrieve all available posts from database.
