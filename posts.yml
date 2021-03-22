@@ -15,30 +15,34 @@
           application/json:
             example: |
               {
-                "posts": [{
-                      "id": "101",
-                      "title": "Post Title",
-                      "content": "Post Content",
-                      "datetime": 1341533193,
-                      "category": "RTV/AGD",
-                  "isPromoted" false,
-                      "author": "Mary Roach",
-                  "authorID" "13",
-                      "likesCount": "12",
-                      "isLikedByUser" : "false",
-                  "comments": [{
-                    "id": "155",
-                    "ownerMode": "true",
-                      "content": "Post Content",
-                      "date": "20-15-2020"
-                    "author": {
-                      "name": "Oliver",
-                      "surname": "Wring"
-                    },
-                    "isLikedByUser": "true",
-                    "likesCount": "10"
-                  },],
-                },],
+                "posts": [
+                  {
+                    "id": "101",
+                    "title": "Post Title",
+                    "content": "Post Content",
+                    "datetime": 1341533193,
+                    "category": "RTV/AGD",
+                    "isPromoted" false,
+                    "author": "Mary Roach",
+                    "authorID" "13",
+                    "likesCount": "12",
+                    "isLikedByUser" : "false",
+                    "comments": [
+                      {
+                        "id": "155",
+                        "ownerMode": "true",
+                        "content": "Post Content",
+                        "date": "20-15-2020"
+                        "author": {
+                          "name": "Oliver",
+                          "surname": "Wring"
+                        },
+                        "isLikedByUser": "true",
+                        "likesCount": "10"
+                      }
+                    ]
+                  }
+                ],
                 "success": true,
                 "status": 200
               }
