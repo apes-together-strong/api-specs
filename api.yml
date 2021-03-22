@@ -1,0 +1,8 @@
+#%RAML 1.0
+!include ./users.yml
+!include ./categories.yml
+!include ./comments.yml
+!include ./comment.yml
+!include ./newsletter.yml
+!include ./posts.yml
+!include ./posts.yml
