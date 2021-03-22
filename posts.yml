@@ -1,0 +1,107 @@
+#%RAML 1.0
+/posts:
+  get:
+    description: Retrieve all available posts from database.
+    head:
+      userID: 
+          displayName: userID
+          type: number
+          description: A user id to retrieve information about posts and coments likes
+          example: 1
+          required: true
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "posts": [{
+                      "id": "101",
+                      "title": "Post Title",
+                      "content": "Post Content",
+                      "datetime": 1341533193,
+                      "category": "RTV/AGD",
+                  "isPromoted" false,
+                      "author": "Mary Roach",
+                  "authorID" "13",
+                      "likesCount": "12",
+                      "isLikedByUser" : "false",
+                  "comments": [{
+                    "id": "155",
+                    "ownerMode": "true",
+                      "content": "Post Content",
+                      "date": "20-15-2020"
+                    "author": {
+                      "name": "Oliver",
+                      "surname": "Wring"
+                    },
+                    "isLikedByUser": "true",
+                    "likesCount": "10"
+                  },],
+                },],
+                "success": true,
+                "status": 200
+              }
+  /{userID}:
+    get:
+      description: Retrive all posts of given user.        
+      queryParameters:
+        userID:
+          displayName: userID
+          type: number
+          description: user id
+          example: 4
+          required: true  
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "posts": [
+                    {
+                      "id": "101",
+                      "title": "Post Title",
+                      "content": "Post Content",
+                      "datetime": 1341533193,
+                      "category": "RTV/AGD",
+                      "isPromoted": false,
+                      "author": "Mary Roach",
+                      "authorID": "13",
+                      "likesCount": "12",
+                      "isLikedByUser": "false",
+                      "comments": [
+                        {
+                          "id": "155",
+                          "ownerMode": "true",
+                          "content": "Post Content",
+                          "date": "20-15-2020",
+                          "author": {
+                            "name": "Oliver",
+                            "surname": "Wring"
+                          },
+                          "isLikedByUser": "true",
+                          "likesCount": "10"
+                        }
+                      ]
+                    }
+                  ],
+                  "success": true,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }

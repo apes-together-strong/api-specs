@@ -1,0 +1,23 @@
+#%RAML 1.0
+/categories:
+  get:
+    description: Retrieve all available categories from database
+    responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "categories": [
+                    {
+                      "id": "101",
+                      "name": "Category Name"
+                    },
+                    {
+                      "id": "420",
+                      "name": "BBQ Stuff"
+                    }
+                  ],
+                  "success": true,
+                  "status": 200
+                }

@@ -1,0 +1,49 @@
+#%RAML 1.0
+/newsletter:
+  /{userID}:
+    post:
+      description: Subscribe or unsubscribe given category.
+      queryParameters:
+        id:
+          displayName: ID
+          type: number
+          description: A user id
+          example: 40
+          required: true
+        body:
+          category:
+            displayName: CategoryID
+            type: number
+            description: ID of the category to be subscribed
+            example: 1
+            required: true
+          isSubscribed:
+            type: bool
+            description: true if user subscribe category
+            example: true
+            required: true
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": true,
+                    "status": 200
+                  }
+          404:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 404
+                  }
+          502:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 502
+                  }

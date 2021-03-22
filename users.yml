@@ -1,0 +1,271 @@
+#%RAML 1.0
+/users:
+  get:
+    description: Get all users
+    responses:
+      200:
+        body:
+          application/json:
+            example: 
+              {
+                "user": [
+                  {
+                    "id": "101",
+                    "isVerified": true,
+                    "isEntrepreneur": true,
+                    "isAdmin": false,
+                    "isActive": true,
+                    "userName": "Rossman",
+                    "userEmail": "user@user.com",
+                    "success": true,
+                    "status": 200
+                  }
+                ]
+              }
+      404:
+        body:
+          application/json:
+            example: |
+              {
+                "success": false,
+                "status": 404
+              }
+      502:
+        body:
+          application/json:
+            example: |
+              {
+                "success": false,
+                "status": 502
+              }
+  put:
+    description: Edit user with given userID
+    head:
+      userID: 
+        displayName: adminID
+        type: number
+        description: A user id to retrieve information about posts and coments likes
+        example: 1
+        required: true
+    queryParameters:
+      userID:
+        displayName: editedUserID
+        type: number
+        description: A user to be modified id
+        example: 3
+        required: true
+      editorID:
+        displayName: editorID
+        type: number
+        description: An editor user id
+        example: 3
+        required: true
+    body:
+      user:
+        isVerified: bool
+        isEntrepreneur: bool
+        isAdmin: bool
+        isActive: bool
+        userName: string
+        userEmail: string
+        timestamp: date
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "success": true,
+                "status": 200
+              }
+      404:
+        body:
+          application/json:
+            example: |
+              {
+                "success": false,
+                "status": 404
+              }
+      502:
+        body:
+          application/json:
+            example: |
+              {
+                "success": false,
+                "status": 502
+              }
+    delete:
+      description: Delete user with given userID. 
+      head:
+        userID: 
+            displayName: adminID
+            type: number
+            description: A user id to retrieve information about posts and coments likes
+            example: 1
+            required: true
+      queryParameters:
+        userID:
+          displayName: userID
+          type: number
+          description: A user to be modified id
+          example: 3
+          required: true
+        editorID:
+          displayName: editorID
+          type: number
+          description: An editor user id
+          example: 3
+          required: true
+      body:
+        dateTime:
+          displayName: DeletionDateTime
+          type: datetime
+          example: 11-23-20:01:01:01
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": true,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }
+  post:
+    description: Add a new user
+    head:
+      userID: 
+        displayName: adminID
+        type: number
+        description: A user id to retrieve information about posts and coments likes
+        example: 1
+        required: true
+    queryParameters:
+      creatorID:
+        displayName: creatorID
+        type: number
+        description: A creator user id
+        example: 3
+        required: true
+    body:
+      user:
+        isVerified: bool
+        isEntrepreneur: bool
+        isAdmin: bool
+        isActive: bool
+        userName: string
+        userEmail: string
+        timestamp: date
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "success": true,
+                "userID": 13
+                "status": 200
+              }
+      404:
+        body:
+          application/json:
+            example: |
+              {
+                "success": false,
+                "status": 404
+              }
+      502:
+        body:
+          application/json:
+            example: |
+              {
+                "success": false,
+                "status": 502
+              }
+  /{userID}:
+    get:
+      description: Get specified user
+      queryParameters:
+        id:
+          displayName: ID
+          type: number
+          description: User ID
+          example: 40
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "user": {
+                    "id": "101",
+                    "isVerified": true,
+                    "isEntrepreneur": true,
+                    "isAdmin": false,
+                    "isActive": true,
+                    "userName": "Rossman",
+                    "userEmail": "user@user.com"
+                  },
+                  "success": true,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }
+    /subscribedCategories:
+      get:
+        description: Retrieve categories subscribed by a given user
+        queryParameters:
+          id:
+            displayName: ID
+            type: number
+            description: User id
+            example: 40
+            required: true
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "categories": [
+                      {
+                        "id": "2"
+                      },
+                      {
+                        "id": "3"
+                      }
+                    ],
+                    "success": true,
+                    "status": 200
+                  }

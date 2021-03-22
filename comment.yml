@@ -1,0 +1,272 @@
+/comment:
+  /{commentID}:
+    get:
+      description: Get a comment with given commentID from database
+      head:
+        userID: 
+            displayName: adminID
+            type: number
+            description: A user id to retrieve information about posts and coments likes
+            example: 1
+            required: true
+      queryParameters:
+        commentID:
+          displayName: commentID
+          type: int
+          description: comment ID
+          example: 12
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "content": "Post Content",
+                  "datetime": 1341533193,
+                  "authorID": "13",
+                  "authorName": "Stafan Nowak",
+                  "likesCount": "12",
+                  "isLikedByUser": "false",
+                  "success": true,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }
+    put:
+      description: Edit comment with given commentID. 
+      head:
+        userID: 
+            displayName: adminID
+            type: number
+            description: A user id to retrieve information about posts and coments likes
+            example: 1
+            required: true
+      queryParameters:
+        commentID:
+          displayName: commentID
+          type: int
+          description: comment ID
+          example: 69
+      body:
+        content:
+          displayName: Content
+          type: string
+          description: A post content
+          example: That offer is bad.
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": true,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }
+    delete:
+      description: Delete comment with given commentID. 
+      head:
+        userID: 
+          displayName: adminID
+          type: number
+          description: A user id to retrieve information about posts and coments likes
+          example: 1
+          required: true
+      queryParameters:
+        commentID:
+          displayName: commentID
+          type: int
+          description: comment ID
+          example: 69
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": true,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }
+    post:
+      description: Add a new comment.
+      head:
+        userID: 
+          displayName: adminID
+          type: number
+          description: A user id to retrieve information about posts and coments likes
+          example: 1
+          required: true
+      body:
+        postID:
+          displayName: postID
+          type: int
+          description: post's id
+          example: 69
+          required: true
+        content:
+          displayName: Content
+          type: string
+          description: A post content
+          example: That offer is bad.
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": true,
+                  "id" : 599,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }
+    /likedUsers:
+      get:
+        description: get all users that liked a comment. 
+        queryParameters:
+          commentID:
+            displayName: commentID
+            type: int
+            description: comment ID
+            example: 69
+            required: true
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "likers":
+                        {
+                          "id": "100",
+                          "id": "111" 
+                        }
+                    "success": true,
+                    "status": 200
+                  }
+          404:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 404
+                  }
+          502:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 502
+                  }
+      put:
+        description: Edit comment like status.
+        head:
+          userID: 
+            displayName: adminID
+            type: number
+            description: A user id to retrieve information about posts and coments likes
+            example: 1
+            required: true
+        queryParameters:
+          commentID:
+            displayName: commentID
+            type: int
+            description: comment ID
+            example: 69
+            required: true
+        body:
+          Like:
+            displayName: Like
+            type: bool
+            description: like status
+            example: true
+            required: true
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": true,
+                    "status": 200
+                  }
+          404:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 404
+                  }
+          502:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 502
+                  }

@@ -1,0 +1,393 @@
+#%RAML 1.0
+/post:
+  /{postID}:
+    get:
+      description: Retrive post with given post ID.
+      head:
+        userID: 
+          displayName: userID
+          type: number
+          description: A user id to retrieve information about posts and coments likes
+          example: 1
+          required: true
+      queryParameters:
+        id:
+          displayName: postID
+          type: number
+          description: post id
+          example: 4
+          required: true    
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "post": [
+                    {
+                      "id": "101",
+                      "title": "Post Title",
+                      "content": "Post Content",
+                      "datetime": 1341533193,
+                      "category": "RTV/AGD",
+                      "isPromoted": false,
+                      "author": "Mary Roach",
+                      "authorID": "13",
+                      "likesCount": "12",
+                      "isLikedByUser": "false",
+                      "comments": [
+                        {
+                          "id": "155",
+                          "ownerMode": "true",
+                          "content": "Post Content",
+                          "date": "20-15-2020",
+                          "author": {
+                            "name": "Oliver",
+                            "surname": "Wring"
+                          },
+                          "isLikedByUser": "true",
+                          "likesCount": "10"
+                        }
+                      ]
+                    }
+                  ],
+                  "success": true,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }
+    put:
+      description: Edit post with given postID. 
+      head:
+        userID: 
+          displayName: userID
+          type: number
+          description: A user id to retrieve information about posts and coments likes
+          example: 1
+          required: true
+      queryParameters:
+        id:
+          displayName: ID
+          type: number
+          description: A post id
+          example: 40
+          required: true
+      body:
+        title:
+          displayName: Title
+          type: string
+          description: A post full title
+          example: Very Funny Post Title
+          required: false
+        content:
+          displayName: Content
+          type: string
+          description: A post content
+          example: Check out that new offer in X shop.
+          required: false
+        category:
+          displayName: CategoryID
+          type: number
+          description: A post category id
+          example: 2
+          required: false
+        isPromoted:
+          displayName: IsPromoted
+          type: bool
+          description: Idicates wheter post is being promoted
+          example: true
+          required: false
+        dateTime:
+          displayName: EditDateTime
+          type: datetime
+          example: 11-23-20:01:01:01
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": true,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }
+    delete:
+      description: Delete post with given postID.
+      head:
+        userID: 
+          displayName: userID
+          type: number
+          description: A user id to retrieve information about posts and coments likes
+          example: 1
+          required: true
+      queryParameters:
+        id:
+          displayName: ID
+          type: number
+          description: A post id
+          example: 40
+          required: true
+      body:
+        dateTime:
+          displayName: DeletionDateTime
+          type: datetime
+          example: 11-23-20:01:01:01
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": true,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }
+    post:
+      description: Add a new post.
+      body:
+        title:
+          displayName: Title
+          type: string
+          description: A post full title
+          example: Very Funny Post Title
+          required: false
+        content:
+          displayName: Content
+          type: string
+          description: A post content
+          example: Check out that new offer in X shop.
+          required: false
+        category:
+          displayName: CategoryID
+          type: number
+          description: A post category id
+          example: 2
+          required: false
+        isPromoted:
+          displayName: IsPromoted
+          type: bool
+          description: Idicates wheter post is being promoted
+          example: true
+          required: false
+        dateTime:
+          displayName: CreationDateTime
+          type: datetime
+          example: 11-23-20:01:01:01
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "id" : 599,
+                  "success": true,
+                  "status": 200
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 404
+                }
+        502:
+          body:
+            application/json:
+              example: |
+                {
+                  "success": false,
+                  "status": 502
+                }
+
+    /comments:
+      get:
+        description: Retrive all comments of given post.        
+        head:
+          userID: 
+            displayName: userID
+            type: number
+            description: A user id to retrieve information about posts and coments likes
+            example: 1
+            required: true
+        queryParameters:
+          postID:
+            displayName: postID
+            type: number
+            description: ID of post.
+            example: 4
+            required: true            
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "comments": [
+                      {
+                        "id": "11",
+                        "content": "Post Content",
+                        "datetime": 1341533193,
+                        "authorID": "13",
+                        "authorName": "Stafan Nowak",
+                        "likesCount": "12",
+                        "isLikedByUser": "false"
+                      }
+                    ],
+                    "success": true,
+                    "status": 200
+                  }
+          404:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 404
+                  }
+          502:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 502
+                  }
+    /likeUsers:
+      get:
+        description: get all users that liked a post. 
+        queryParameters:
+          postID:
+            displayName: postID
+            type: int
+            description: post ID
+            example: 13
+            required: true
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "likers": [
+                      {
+                        "id": "2"
+                      },
+                      {
+                        "id": "3"
+                      }
+                    ],
+                    "success": true,
+                    "status": 200
+                  }
+          404:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 404
+                  }
+          502:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 502
+                  }
+      put:
+        description: Edit post like status
+        head:
+          userID: 
+            displayName: userID
+            type: number
+            description: A user id to retrieve information about posts and coments likes
+            example: 1
+            required: true
+        queryParameters:
+          commentID:
+            displayName: commentID
+            type: int
+            description: comment ID
+            example: 69
+            required: true
+        body:
+          Like:
+            displayName: Like
+            type: bool
+            description: like status.
+            example: true
+            required: true
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": true,
+                    "status": 200
+                  }
+          404:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 404
+                  }
+          502:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success": false,
+                    "status": 502
+                  }
