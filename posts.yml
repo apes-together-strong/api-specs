@@ -32,10 +32,7 @@
                         "ownerMode": "true",
                         "content": "Post Content",
                         "date": "20-15-2020"
-                        "author": {
-                          "name": "Oliver",
-                          "surname": "Wring"
-                        },
+                        "authorName": "Oliver Wring",
                         "isLikedByUser": "true",
                         "likesCount": "10"
                       }
@@ -79,10 +76,7 @@
                           "ownerMode": "true",
                           "content": "Post Content",
                           "date": "20-15-2020",
-                          "author": {
-                            "name": "Oliver",
-                            "surname": "Wring"
-                          },
+                          "authorName": "Oliver Wring",
                           "isLikedByUser": "true",
                           "likesCount": "10"
                         }
